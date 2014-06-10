@@ -37,21 +37,29 @@ MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
 			if (this.useMMLspacing) {
 				var mu = this.HTMLgetMu(span);
 				var values = this.getValues("scriptlevel","lspace","rspace");
-				values.lspace = Math.max(0,HTMLCSS.length2em(.12,mu));
-				values.rspace = Math.max(0,HTMLCSS.length2em(.12,mu));
+				values.lspace = Math.max(0,HTMLCSS.length2em(.05,mu));
+				values.rspace = Math.max(0,HTMLCSS.length2em(.17,mu));
 				var core = this, parent = this.parent;
 				while (parent && parent.isEmbellished() && parent.Core() === core)
 				{core = parent; parent = parent.parent; span = core.HTMLspanElement()}
 				if(parent.type === "mrow")
 				{
-					var m = parent.data.length;
+					var i,m = parent.data.length;
+					for(i=0;i<m;i++)
+					{
+						if(core == parent.data[i]) break;
+					}
 					if(core !== parent.data[m-1])
 					{
-						if (values.rspace) {span.style.paddingRight = HTMLCSS.Em(values.rspace)}
+						if ((parent.data[i+1].type!="mspace")&&
+							(parent.data[i+1].type!="mphantom")&&
+							(values.rspace)) {span.style.paddingRight = HTMLCSS.Em(values.rspace)}
 					}
 					if(core !== parent.data[0])
 					{
-						if (values.lspace) {span.style.paddingLeft =  HTMLCSS.Em(values.lspace)}
+						if ((parent.data[i-1].type!="mspace")&&
+							(parent.data[i-1].type!="mphantom")&&
+							(values.lspace)) {span.style.paddingLeft =  HTMLCSS.Em(values.lspace)}
 					}
 				}
 			} else {
@@ -91,21 +99,29 @@ MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
 			if (this.useMMLspacing) {
 				var mu = this.HTMLgetMu(span);
 				var values = this.getValues("scriptlevel","lspace","rspace");
-				values.lspace = Math.max(0,HTMLCSS.length2em(.12,mu));
-				values.rspace = Math.max(0,HTMLCSS.length2em(.12,mu));
+				values.lspace = Math.max(0,HTMLCSS.length2em(.05,mu));
+				values.rspace = Math.max(0,HTMLCSS.length2em(.17,mu));
 				var core = this, parent = this.parent;
 				while (parent && parent.isEmbellished() && parent.Core() === core)
 				{core = parent; parent = parent.parent; span = core.HTMLspanElement()}
 				if(parent.type === "mrow")
 				{
-					var m = parent.data.length;
+					var i,m = parent.data.length;
+					for(i=0;i<m;i++)
+					{
+						if(core == parent.data[i]) break;
+					}
 					if(core !== parent.data[m-1])
 					{
-						if (values.rspace) {span.style.paddingRight = HTMLCSS.Em(values.rspace)}
+						if ((parent.data[i+1].type!="mspace")&&
+							(parent.data[i+1].type!="mphantom")&&
+							(values.rspace)) {span.style.paddingRight = HTMLCSS.Em(values.rspace)}
 					}
 					if(core !== parent.data[0])
 					{
-						if (values.lspace) {span.style.paddingLeft =  HTMLCSS.Em(values.lspace)}
+						if ((parent.data[i-1].type!="mspace")&&
+							(parent.data[i-1].type!="mphantom")&&
+							(values.lspace)) {span.style.paddingLeft =  HTMLCSS.Em(values.lspace)}
 					}
 				}
 			} else {
@@ -118,14 +134,22 @@ MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
 				{core = parent; parent = parent.parent; span = core.HTMLspanElement()}
 				if(parent.type === "mrow")
 				{
-					var m = parent.data.length;
+					var i,m = parent.data.length;
+					for(i=0;i<m;i++)
+					{
+						if(core == parent.data[i]) break;
+					}
 					if(core !== parent.data[m-1])
 					{
-						if (values.rspace) {span.style.paddingRight = HTMLCSS.Em(values.rspace)}
+						if ((parent.data[i+1].type!="mspace")&&
+							(parent.data[i+1].type!="mphantom")&&
+							(values.rspace)) {span.style.paddingRight = HTMLCSS.Em(values.rspace)}
 					}
 					if(core !== parent.data[0])
 					{
-						if (values.lspace) {span.style.paddingLeft =  HTMLCSS.Em(values.lspace)}
+						if ((parent.data[i-1].type!="mspace")&&
+							(parent.data[i-1].type!="mphantom")&&
+							(values.lspace)) {span.style.paddingLeft =  HTMLCSS.Em(values.lspace)}
 					}
 				}
 			}
